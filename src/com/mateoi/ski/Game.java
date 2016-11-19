@@ -1,4 +1,4 @@
-package application;
+package com.mateoi.ski;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class Game {
     private final double CANVAS_HEIGHT;
 
     private double playerX;
-    private double playerY;
+    private final double playerY;
     private final ArrayList<Position> treePositions = new ArrayList<>();
 
     private final int maxTrees;
@@ -91,6 +91,18 @@ public class Game {
         return playerY;
     }
 
+    public double getMaxX() {
+        return CANVAS_WIDTH;
+    }
+
+    public double getMaxY() {
+        return CANVAS_HEIGHT;
+    }
+
+    public int getHitBoxSize() {
+        return HIT_BOX_SIZE;
+    }
+
     public ArrayList<Position> getTreePositions() {
         return treePositions;
     }
@@ -107,29 +119,4 @@ public class Game {
         return score;
     }
 
-    public class Position {
-        private double x;
-        private double y;
-
-        public Position(double x, double y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        public double getX() {
-            return x;
-        }
-
-        public double getY() {
-            return y;
-        }
-
-        public void setX(double x) {
-            this.x = x;
-        }
-
-        public void setY(double y) {
-            this.y = y;
-        }
-    }
 }

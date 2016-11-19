@@ -1,4 +1,4 @@
-package application;
+package com.mateoi.ski;
 
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -17,7 +17,9 @@ public class Main extends Application {
             Canvas canvas = new Canvas(300, 550);
             root.getChildren().add(canvas);
             Game game = new Game(10, 2.0, 0.03, 1, 0.05, canvas.getWidth(), canvas.getHeight());
-            GameController controller = new GameController(game, canvas, scene);
+            // Player player = new HumanPlayer(scene);
+            Player player = new AiPlayer();
+            GameController controller = new GameController(game, canvas, player);
             window.show();
             controller.playGame();
         } catch (Exception e) {
