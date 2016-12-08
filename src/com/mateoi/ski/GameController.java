@@ -13,12 +13,12 @@ public class GameController {
     private Image playerSprite = new Image(this.getClass().getResource("resources/Ski Simulator-48.png").toString());
     private Image tree = new Image(this.getClass().getResource("resources/Coniferous Tree-48.png").toString());
 
-    private Game game;
+    private SkiGame game;
     private Canvas canvas;
     private GraphicsContext gc;
     private Player player;
 
-    public GameController(Game game, Canvas canvas, Player player) {
+    public GameController(SkiGame game, Canvas canvas, Player player) {
         this.game = game;
         this.canvas = canvas;
         this.player = player;
@@ -35,9 +35,9 @@ public class GameController {
         @Override
         public void handle(long now) {
             gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.drawImage(playerSprite, game.getPlayerX(), game.getPlayerY(), Game.SPRITE_SIZE, Game.SPRITE_SIZE);
+            gc.drawImage(playerSprite, game.getPlayerX(), game.getPlayerY(), SkiGame.SPRITE_SIZE, SkiGame.SPRITE_SIZE);
             for (Position treePos : game.getTreePositions()) {
-                gc.drawImage(tree, treePos.getX(), treePos.getY(), Game.SPRITE_SIZE, Game.SPRITE_SIZE);
+                gc.drawImage(tree, treePos.getX(), treePos.getY(), SkiGame.SPRITE_SIZE, SkiGame.SPRITE_SIZE);
             }
             gc.fillText(String.valueOf(game.getScore()), 5., 15.);
             int move = player.move(game);

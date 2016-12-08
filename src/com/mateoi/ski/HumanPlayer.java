@@ -1,29 +1,20 @@
 package com.mateoi.ski;
 
-import java.util.ArrayList;
-
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 public class HumanPlayer implements Player {
-    private ArrayList<KeyCode> input = new ArrayList<>();
 
-    public HumanPlayer(Scene scene) {
-        scene.setOnKeyPressed(e -> {
-            if (!input.contains(e.getCode())) {
-                input.add(e.getCode());
-            }
-        });
-        scene.setOnKeyReleased(e -> input.remove(e.getCode()));
+    public HumanPlayer() {
+        // Nothing here
     }
 
     @Override
-    public int move(Game state) {
+    public int move(SkiGame state) {
         int move = 0;
-        if (input.contains(KeyCode.RIGHT)) {
+        if (SkiFXApp.keyPressed(KeyCode.RIGHT)) {
             move++;
         }
-        if (input.contains(KeyCode.LEFT)) {
+        if (SkiFXApp.keyPressed(KeyCode.LEFT)) {
             move--;
         }
         return move;

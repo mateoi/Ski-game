@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
-public class Game {
+public class SkiGame {
 
     public static final int SPRITE_SIZE = 20;
     public static final int HIT_BOX_SIZE = 15;
@@ -26,7 +26,7 @@ public class Game {
     private final BooleanProperty doneProperty = new SimpleBooleanProperty(false);
     private int score = 0;
 
-    public Game(int maxTrees, double playerSpeed, double treeSpawnProbability, double treeSpeed,
+    public SkiGame(int maxTrees, double playerSpeed, double treeSpawnProbability, double treeSpeed,
             double treeSpeedIncrease, double width, double height) {
         this.maxTrees = maxTrees;
         this.playerSpeed = playerSpeed;

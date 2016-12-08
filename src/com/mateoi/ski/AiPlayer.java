@@ -5,18 +5,18 @@ import java.util.List;
 public class AiPlayer implements Player {
 
     public AiPlayer() {
-        // TODO Auto-generated constructor stub
+        // Nothing here
     }
 
     @Override
-    public int move(Game state) {
+    public int move(SkiGame state) {
         Position player = new Position(state.getPlayerX(), state.getPlayerY());
         Position closest = closestTree(state.getTreePositions(), player);
         if (closest == null) {
             return 0;
-        } else if (closest.getX() < state.getHitBoxSize()) {
+        } else if (closest.getX() <= state.getHitBoxSize()) {
             return 1;
-        } else if (closest.getX() > state.getMaxX() - 2 * state.getHitBoxSize()) {
+        } else if (closest.getX() >= state.getMaxX() - 2 * state.getHitBoxSize()) {
             return -1;
         } else {
             return (int) Math.signum(player.getX() - closest.getX());
