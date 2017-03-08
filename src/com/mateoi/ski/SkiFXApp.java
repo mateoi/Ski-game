@@ -9,6 +9,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+/**
+ * This class is the FX application that gets rendered on screen. Also maintains
+ * a list of currently pressed keys for keyboard input.
+ *
+ * @author mateo
+ *
+ */
+
 public class SkiFXApp extends Application {
 
     private static SkiGame game;
@@ -21,6 +29,12 @@ public class SkiFXApp extends Application {
         // Nothing here
     }
 
+    /**
+     * Checks if the given {@link KeyCode} is pressed.
+     *
+     * @param code
+     * @return
+     */
     public static boolean keyPressed(KeyCode code) {
         return input.contains(code);
     }
@@ -32,7 +46,7 @@ public class SkiFXApp extends Application {
             Scene scene = new Scene(root);
             window.setScene(scene);
             addSceneListeners(scene);
-            Canvas canvas = new Canvas(game.getMaxX(), game.getMaxY());
+            Canvas canvas = new Canvas(game.getFieldWidth(), game.getFieldHeight());
             root.getChildren().add(canvas);
             GameController controller = new GameController(game, canvas, player);
             window.show();
@@ -42,6 +56,11 @@ public class SkiFXApp extends Application {
         }
     }
 
+    /**
+     * Adds keyboard listeners to the given scene.
+     *
+     * @param scene
+     */
     private static void addSceneListeners(Scene scene) {
         scene.setOnKeyPressed(e -> {
             if (!input.contains(e.getCode())) {
@@ -51,10 +70,20 @@ public class SkiFXApp extends Application {
         scene.setOnKeyReleased(e -> input.remove(e.getCode()));
     }
 
+    /**
+     * Set the state of the game
+     *
+     * @param game
+     */
     public static void setGame(SkiGame game) {
         SkiFXApp.game = game;
     }
 
+    /**
+     * Set the player that will play the game.
+     *
+     * @param player
+     */
     public static void setPlayer(Player player) {
         SkiFXApp.player = player;
     }

@@ -2,9 +2,15 @@ package com.mateoi.ski;
 
 import java.util.List;
 
-public class AiPlayer implements Player {
+/**
+ * An AI player that plays Ski
+ *
+ * @author mateo
+ *
+ */
+public class AIPlayer implements Player {
 
-    public AiPlayer() {
+    public AIPlayer() {
         // Nothing here
     }
 
@@ -16,13 +22,20 @@ public class AiPlayer implements Player {
             return 0;
         } else if (closest.getX() <= state.getHitBoxSize()) {
             return 1;
-        } else if (closest.getX() >= state.getMaxX() - 2 * state.getHitBoxSize()) {
+        } else if (closest.getX() >= state.getFieldWidth() - 2 * state.getHitBoxSize()) {
             return -1;
         } else {
             return (int) Math.signum(player.getX() - closest.getX());
         }
     }
 
+    /**
+     * Calculate the position of the closest tree by euclidean distance
+     *
+     * @param trees
+     * @param player
+     * @return
+     */
     private Position closestTree(List<Position> trees, Position player) {
         double minDistance = Double.MAX_VALUE;
         Position closest = null;
@@ -36,6 +49,13 @@ public class AiPlayer implements Player {
         return closest;
     }
 
+    /**
+     * Calculate the square of the distance between the two given positions.
+     * 
+     * @param tree
+     * @param player
+     * @return
+     */
     private double distanceSquared(Position tree, Position player) {
         double dx = tree.getX() - player.getX();
         double dy = tree.getY() - player.getY();
